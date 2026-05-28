@@ -1,1 +1,35 @@
+# Transaction ETL Dashboard Summary
+
+This dashboard was created using Power BI to analyze transaction and fraud data after completing the ETL process using Python and SQL Server.
+
+The dashboard provides insights into:
+
+* Total transactions
+* Total revenue
+* Fraud activity
+* Transaction trends
+* Device usage
+* Payment methods
+
+The visualizations help identify fraud patterns, customer behavior, and business performance.
+
+## Dashboard Visuals
+
+* KPI Cards for total revenue, transactions, and fraud count
+* Bar Charts for transaction types and device usage
+* Donut Charts for fraud vs non-fraud transactions
+* Line Charts for transaction trends over time
+* Revenue analysis by network slice and region
+
+## Technologies Used
+
+* Python
+* SQL Server
+* Power BI
+* Pandas
+* SQLAlchemy
+
+## Project Outcome
+
+This project demonstrates an end-to-end ETL and business intelligence workflow that converts raw transaction data into interactive dashboards and business insights.
 
