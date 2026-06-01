@@ -5,3 +5,202 @@ pyodbc
 jupyter
 notebook
 powerbi-client
+
+
+# TransactionETLDB ETL & Data Analytics Project
+
+## Project Overview
+
+This project is a complete end-to-end ETL (Extract, Transform, Load) and data analytics pipeline built using a transaction dataset. The project focuses on extracting raw transaction data, transforming and cleaning the data using Python and SQL Server, and generating business insights through SQL analysis and Power BI visualizations.
+
+The final solution demonstrates how transactional data can be processed into a structured analytical dataset to support business intelligence, fraud monitoring, revenue analysis, and operational reporting.
+
+---
+
+## Project Objectives
+
+- Build a professional ETL pipeline
+- Clean and transform raw transaction data
+- Load processed data into SQL Server
+- Perform SQL-based business analysis
+- Create interactive Power BI dashboards
+- Publish a professional GitHub portfolio project
+
+---
+
+## Technologies Used
+
+- Python
+- Pandas
+- SQL Server
+- SQLAlchemy
+- PyODBC
+- Jupyter Notebook
+- Power BI
+- GitHub
+
+---
+
+## Project Structure
+
+```text
+TransactionETLDB/
+│
+├── data/
+│   ├── raw/
+│   └── clean/
+│
+├── notebooks/
+│
+├── sql/
+│   ├── create_database.sql
+│   ├── create_clean_table.sql
+│   ├── load_clean_data.sql
+│   └── analysis_queries.sql
+│
+├── powerbi/
+│
+├── images/
+│
+├── docs/
+│   ├── data_dictionary.md
+│   └── etl_architecture.md
+│
+├── requirements.txt
+│
+└── README.md
+```
+
+---
+
+## ETL Pipeline
+
+### 1. Extract
+
+- Imported raw transaction CSV data
+- Loaded dataset into Python using Pandas
+- Validated data structure and columns
+
+### 2. Transform
+
+Data cleaning included:
+
+- Removing duplicate records
+- Handling null values
+- Formatting transaction amounts
+- Standardizing transaction types
+- Cleaning fraud flag values
+- Validating timestamps
+
+### 3. Load
+
+- Loaded transformed data into SQL Server
+- Created clean analytical tables
+- Validated total row counts
+
+---
+
+## Database Information
+
+### Database Name
+
+```sql
+TransactionETLDB
+```
+
+### Main Tables
+
+| Table Name | Description |
+|---|---|
+| transaction_raw | Raw imported transaction data |
+| transaction_clean | Clean transformed transaction data |
+| transaction_types | Transaction category lookup table |
+| network_slices | Network slice performance metrics |
+
+---
+
+## Sample SQL Analysis
+
+### Transaction Revenue by Type
+
+```sql
+SELECT
+    transaction_type,
+    COUNT(*) AS total_transactions,
+    SUM(transaction_amount) AS total_revenue
+FROM dbo.transaction_raw
+GROUP BY transaction_type;
+```
+
+### Fraud Transaction Analysis
+
+```sql
+SELECT
+    fraud_flag,
+    COUNT(*) AS total_transactions
+FROM dbo.transaction_raw
+GROUP BY fraud_flag;
+```
+
+---
+
+## Power BI Dashboard Features
+
+The Power BI dashboard includes:
+
+- KPI Card → Total Revenue
+- KPI Card → Total Transactions
+- KPI Card → Fraud Transactions
+- Clustered Bar Chart → Revenue by Transaction Type
+- Donut Chart → Fraud vs Non-Fraud
+- Line Chart → Transactions Over Time
+- Bar Chart → Revenue by Network Slice
+- Device Usage Analysis
+
+---
+
+## Key Business Insights
+
+- Transfer transactions generated the highest revenue
+- Fraud transactions represented approximately 48.10% of all transactions
+- Mobile and desktop devices showed different transaction behaviors
+- Certain network slices generated higher transaction revenue
+- Transaction activity trends can support operational monitoring
+
+---
+
+## Requirements
+
+Install dependencies using:
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## Future Improvements
+
+- Add machine learning fraud detection
+- Automate ETL scheduling
+- Deploy dashboard to cloud environment
+- Create API integration for live transaction feeds
+
+## Business Impact
+
+The TransactionETLDB project provides a scalable analytical solution that transforms raw transaction data into meaningful business intelligence. The platform improves fraud visibility, operational monitoring, revenue tracking, and executive reporting through automated ETL processing and interactive dashboards.
+
+The final solution supports:
+
+- Faster decision-making
+- Improved fraud detection awareness
+- Better operational monitoring
+- Enhanced reporting accuracy
+- Centralized business analytics
+- Improved transaction performance visibility
+
+## Author
+
+John Meeks
+
+GitHub Portfolio Project
