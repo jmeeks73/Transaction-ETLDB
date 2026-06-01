@@ -17,3 +17,13 @@ print(df_clean.columns)
 # 4. Check for Missing Values
 
 print(df_clean.isnull().sum())
+
+
+# 5. Overall Summary
+
+summary = df_clean["transaction_amount"].agg(
+    ["count", "mean", "min", "max", "sum"]
+).round(2)
+
+print(summary)
+
