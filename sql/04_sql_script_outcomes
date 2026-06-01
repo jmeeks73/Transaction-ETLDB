@@ -1,6 +1,95 @@
 --4. Total Transactions and Revenues
 
- transaction_type	total_transactions	total_revenue	avg_transaction_amount
+  total_transactions	      total_revenue	     avg_transaction_amount
+       1000	                 771165.29	             771.17
+
+--5. --5. Total Transactions By Transaction Type
+transaction_type	total_transactions	total_revenue	avg_transaction_amount
  Transfer	              374	             291,776.55	    780.15
- Deposit	              316	             252,042.62	    797.60
- Withdrawal	         310	             227,346.12	    733.37
+ Deposit	               316	             252,042.62	    797.60
+ Withdrawal	            310	             227,346.12	    733.37
+
+--6. Transactions By Fraud Analysis 
+Fraud_Flag	total_transactions	total_transaction_amount	avg_transaction_amount	    highest_transaction_amount
+     0	         519	           392301.39	                  755.88	                         1494.01
+     1	         481	           378863.9                    787.66	                         1497.76
+
+
+--7. transaction_status	total_transactions
+     Failed	               513
+     Success	              487
+
+--8. Transactions By Device
+
+device_used	total_transactions	avg_transaction    amount	total_revenue
+     Mobile	    521	               773.91	           403209.13
+     Desktop	   479	               768.18	           367956.16
+
+--9. Transactions By Geographic Region
+
+geolocation_latitude
+51.5074 N,  -118.2437 W
+55.7558 N,  2.3522 W
+40.7128 N,  -118.2437 W
+55.7558 N,  -74.006 W
+34.0522 N,  0.1278 W
+48.8566 N,  2.3522 W
+48.8566 N,  139.6917 W
+35.6895 N,  -74.006 W
+40.7128 N,  -74.006 W
+55.7558 N,  0.1278 W
+
+geolocation_latitude	total_transactions
+48.8566     N, 139.6917 W   	42
+51.5074     N, 0.1278 W	     38
+55.7558     N, 37.6173 W    	37
+55.7558     N, -74.006 W    	37
+55.7558     N, 2.3522 W	     32
+35.6895     N, 2.3522 W	     32
+48.8566     N, 0.1278 W	     31
+34.0522     N, 139.6917 W	   31
+35.6895     N, -118.2437 W  	31
+51.5074     N, -118.2437 W	  31
+48.8566     N, 2.3522 W	     30
+35.6895     N, 0.1278 W	     30
+40.7128     N, 2.3522 W	     30
+34.0522     N, -74.006 W	    29
+35.6895     N, 139.6917 W   	29
+34.0522     N, 0.1278 W	     29
+34.0522     N, 2.3522 W	     28
+40.7128     N, 0.1278 W	     28
+48.8566     N, 37.6173 W	    28
+51.5074     N, 139.6917 W	   28
+55.7558     N, 0.1278 W     	27
+34.0522     N, -118.2437 W	  27
+48.8566     N, -118.2437 W  	25
+35.6895     N, -74.006 W	    25
+40.7128     N, 37.6173 W	    24
+40.7128     N, -118.2437 W	  24
+40.7128     N, 139.6917 W	   23
+55.7558     N, 139.6917 W   	23
+51.5074     N, 2.3522 W     	23
+51.5074     N, 37.6173 W    	23
+48.8566     N, -74.006 W	    23
+51.5074     N, -74.006 W    	22
+35.6895     N, 37.6173 W	    22
+40.7128     N, -74.006 W	    22
+34.0522     N, 37.6173 W	    22
+55.7558     N, -118.2437 W  	14
+
+--10.  total_transactions   	avg_latency_ms	        min_latency_ms        	max_latency_ms
+          1000	                 11.69                 3	                    20
+
+
+--11. Transactions By Bandwitch
+
+       total_transactions	      avg_bandwidth_usage	     min_bandwidth_usage	   max_bandwidth_usage
+            1000	                     148.51	               50	                    250
+
+
+--13. Transaction By Network Slice ID
+
+Network_Slice_ID	total_transactions	total_revenue	avg_transaction_amount
+     Slice2	340	              265425.76	                780.66
+     Slice3	337	              254372.8	                 754.82
+     Slice1	323	              251366.73	                778.23
