@@ -1,1 +1,240 @@
+--4. Total Transactions and Revenues
+
+USE TransactionETLDB;
+GO
+
+SELECT
+    COUNT(*) AS total_transactions,
+    ROUND(SUM(transaction_amount), 2) AS total_revenue,
+    ROUND(AVG(transaction_amount), 2) AS avg_transaction_amount
+FROM dbo.transaction_raw;
+GO
+
+--5. Total Transactions By Transaction Type
+
+SELECT
+    tt.transaction_type,
+    COUNT(*) AS total_transactions,
+    ROUND(SUM(transaction_amount), 2) AS total_revenue,
+    ROUND(AVG(transaction_amount), 2) AS avg_transaction_amount
+FROM dbo.transaction_raw
+INNER JOIN dbo.transaction_types tt
+    ON tt.transaction_type_id = tt.transaction_type_id
+GROUP BY tt.transaction_type
+ORDER BY total_revenue DESC;
+GO
+
+--6. Transactions By Fraud Analysis 
+
+ SELECT
+    Fraud_Flag,
+    COUNT(*) AS total_transactions,
+    ROUND(SUM(transaction_amount), 2) AS total_transaction_amount,
+    ROUND(AVG(transaction_amount), 2) AS avg_transaction_amount,
+    ROUND(MAX(transaction_amount), 2) AS highest_transaction_amount
+FROM dbo.transaction_raw
+GROUP BY Fraud_Flag
+ORDER BY total_transactions DESC;
+GO
+
+
+-- 7. Transaction Status
+
+SELECT
+    transaction_status,
+    COUNT(*) AS total_transactions
+FROM dbo.transaction_raw
+GROUP BY transaction_status;
+
+--8. Transactions over a period of time
+
+SELECT
+    CAST([Timestamp] AS DATE) AS transaction_date,
+    [Transaction_Type]                 AS payment_method,
+    COUNT(*)                         AS total_transactions,
+    ROUND(SUM([Transaction_Amount]), 2) AS total_amount
+FROM dbo.transaction_raw
+GROUP BY
+    CAST([Timestamp] AS DATE),
+    [Transaction_Type]
+ORDER BY
+    transaction_date,
+    payment_method;
+GO
+
+SELECT
+    YEAR([Timestamp])  AS transaction_year,
+    MONTH([Timestamp]) AS transaction_month,
+    COUNT(*)                  AS total_transactions,
+    ROUND(SUM([Transaction_Amount]), 2) AS total_amount,
+    ROUND(AVG([Transaction_Amount]), 2) AS avg_amount
+FROM dbo.transaction_raw
+GROUP BY
+    YEAR([Timestamp]),
+    MONTH([Timestamp])
+ORDER BY
+    transaction_year,
+    transaction_month;
+GO
+
+--9. Transactions By Device
+
+SELECT
+    device_used,
+    COUNT(*) AS total_transactions,
+    ROUND(AVG(transaction_amount), 2) AS avg_transaction_amount,
+    ROUND(SUM(transaction_amount), 2) AS total_revenue
+FROM dbo.transaction_raw
+GROUP BY device_used
+ORDER BY total_transactions DESC;
+GO
+
+--10. Transactions By Geographic Region
+
+USE TransactionETLDB;
+GO
+
+IF OBJECT_ID('dbo.geolocations', 'U') IS NOT NULL
+    DROP TABLE dbo.geolocations;
+GO
+
+SELECT DISTINCT
+    [Geolocation_Latitude_Longitude] AS geolocation_latitude
+INTO dbo.geolocations
+FROM dbo.transaction_raw
+WHERE [Geolocation_Latitude_Longitude] IS NOT NULL;
+GO
+
+SELECT TOP (10)
+    *
+FROM dbo.geolocations;
+GO
+
+SELECT
+    g.geolocation_latitude,
+    COUNT(*) AS total_transactions
+FROM dbo.transaction_raw AS tr
+INNER JOIN dbo.geolocations AS g
+    ON tr.[Geolocation_Latitude_Longitude] =
+       g.geolocation_latitude
+GROUP BY g.geolocation_latitude
+ORDER BY total_transactions DESC;
+GO
+
+SELECT
+    g.geolocation_latitude,
+    tr.device_used,
+
+    COUNT(*) AS total_transactions,
+
+    ROUND(
+        SUM(CAST(tr.transaction_amount AS FLOAT)),
+        2
+    ) AS total_amount,
+
+    ROUND(
+        AVG(CAST(tr.transaction_amount AS FLOAT)),
+        2
+    ) AS avg_amount
+
+FROM dbo.transaction_raw AS tr
+
+INNER JOIN dbo.geolocations AS g
+    ON tr.[Geolocation_Latitude_Longitude] =
+       g.geolocation_latitude
+
+GROUP BY
+    g.geolocation_latitude,
+    tr.device_used
+
+ORDER BY
+    total_amount DESC;
+GO
+
+SELECT
+    t.transaction_id,
+    t.transaction_amount,
+    t.Timestamp,
+    f.risk_level
+FROM dbo.transaction_raw t
+INNER JOIN dbo.fraud_analysis f
+    ON t.transaction_id = f.transaction_id
+WHERE f.risk_level = 'High'
+ORDER BY t.transaction_amount DESC;
+GO
+
+
+--11. Transactions by Latency
+
+SELECT
+    COUNT(*) AS total_transactions,
+
+    ROUND(
+        AVG(CAST([Latency_ms] AS FLOAT)),
+        2
+    ) AS avg_latency_ms,
+
+    ROUND(
+        MIN(CAST([Latency_ms] AS FLOAT)),
+        2
+    ) AS min_latency_ms,
+
+    ROUND(
+        MAX(CAST([Latency_ms] AS FLOAT)),
+        2
+    ) AS max_latency_ms
+FROM dbo.transaction_raw;
+GO
+
+
+---12. Transactions By Bandwitch
+
+SELECT
+    COUNT(*) AS total_transactions,
+
+    ROUND(
+        AVG(CAST([Slice_Bandwidth_Mbps] AS FLOAT)),
+        2
+    ) AS avg_bandwidth_usage,
+
+    ROUND(
+        MIN(CAST([Slice_Bandwidth_Mbps] AS FLOAT)),
+        2
+    ) AS min_bandwidth_usage,
+
+    ROUND(
+        MAX(CAST([Slice_Bandwidth_Mbps] AS FLOAT)),
+        2
+    ) AS max_bandwidth_usage
+FROM dbo.transaction_raw;
+GO
+
+--13. Joins Based Personal Identification Analysis
+
+SELECT
+    [PIN_Code] AS pin_id,
+
+    COUNT(*) AS total_transactions,
+
+    ROUND(
+        SUM(CAST([Transaction_Amount] AS FLOAT)),
+        2
+    ) AS total_spent
+
+FROM dbo.transaction_raw
+GROUP BY [PIN_Code]
+ORDER BY total_spent DESC;
+GO
+
+--14. Transaction By Network Slice ID
+
+SELECT
+    Network_Slice_ID,
+    COUNT(*) AS total_transactions,
+    ROUND(SUM(transaction_amount), 2) AS total_revenue,
+    ROUND(AVG(transaction_amount), 2) AS avg_transaction_amount
+FROM dbo.transaction_raw
+GROUP BY Network_Slice_ID
+ORDER BY total_revenue DESC;
+GO
 
