@@ -1,4 +1,6 @@
 --4. Total Transactions and Revenues
 
-total_transactions	total_revenue	avg_transaction_amount
-     1000	             771165.29	       771.17
+ transaction_type	total_transactions	total_revenue	avg_transaction_amount
+ Transfer	              374	             291,776.55	    780.15
+ Deposit	              316	             252,042.62	    797.60
+ Withdrawal	         310	             227,346.12	    733.37
