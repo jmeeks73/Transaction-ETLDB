@@ -1,3 +1,4 @@
+# Libraries and Technologies Used
 pandas
 numpy
 sqlalchemy
@@ -14,6 +15,104 @@ powerbi-client
 This project is a complete end-to-end ETL (Extract, Transform, Load) and data analytics pipeline built using a transaction dataset. The project focuses on extracting raw transaction data, transforming and cleaning the data using Python and SQL Server, and generating business insights through SQL analysis and Power BI visualizations.
 
 The final solution demonstrates how transactional data can be processed into a structured analytical dataset to support business intelligence, fraud monitoring, revenue analysis, and operational reporting.
+
+1. Main Business Problem
+
+Financial institutions process thousands of transactions daily. Without proper analysis, organizations may struggle to:
+
+Detect fraudulent transactions quickly
+Monitor transaction performance
+Identify high-risk transaction behavior
+Understand customer transaction patterns
+Optimize network and system performance
+Reduce financial losses caused by fraud
+
+The organization needs a centralized ETL pipeline to transform raw transaction data into meaningful business insights.
+
+2. Key Business Challenges
+A. Fraud Detection
+Problem
+
+Fraudulent transactions can lead to:
+
+Financial losses
+Customer distrust
+Security risks
+Regulatory compliance issues
+Business Need
+
+The company must identify:
+
+Which transactions are fraudulent
+Patterns associated with fraud
+High-risk transaction types
+Suspicious transaction behavior
+B. Transaction Monitoring
+Problem
+
+The organization cannot effectively track:
+
+Total transaction volume
+Revenue generated
+Failed transactions
+Transaction trends over time
+Business Need
+
+The company needs real-time visibility into transaction performance and operational activity.
+
+C. Device Usage Analysis
+Problem
+
+The business lacks visibility into:
+
+Which devices customers use most
+Whether fraud is higher on mobile or desktop devices
+Customer behavior across platforms
+Business Need
+
+The organization must understand device-based transaction behavior to improve security and customer experience.
+
+D. Network Performance Issues
+Problem
+
+Poor network performance can cause:
+
+Transaction delays
+Failed transactions
+Customer dissatisfaction
+System bottlenecks
+Business Need
+
+The company must analyze:
+
+Network slice performance
+Latency trends
+Bandwidth utilization
+
+3. Business Questions
+
+The project answers important operational and financial questions such as:
+
+How many transactions occur daily?
+What is the total transaction revenue?
+What percentage of transactions are fraudulent?
+Which transaction type generates the highest revenue?
+Which devices are used most frequently?
+Which network slices perform poorly?
+Are failed transactions linked to latency issues?
+What trends exist over time?
+
+4. Business Impact
+
+Without analytics, the organization may experience:
+
+Increased fraud losses
+Slow fraud investigations
+Poor operational visibility
+Reduced customer satisfaction
+Higher infrastructure costs
+Weak decision-making
+
 
 ---
 
